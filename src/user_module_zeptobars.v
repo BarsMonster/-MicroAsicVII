@@ -114,27 +114,27 @@ div4_zeptobars tmp7(c7_5, rst_n, c7_output);
 
 wire c8_1, c8_2, c8_3, c8_output;
 
-sky130_fd_sc_ls__inv l8_1 (A(c8_1 & ena), X(c8_2));
-sky130_fd_sc_ls__inv l8_2 (A(c8_2), X(c8_3));
-sky130_fd_sc_ls__inv l8_3 (A(c8_3), X(c8_1));
+sky130_fd_sc_ls__inv l8_1 (.A(c8_1 & ena), .A(c8_2));
+sky130_fd_sc_ls__inv l8_2 (.A(c8_2), .A(c8_3));
+sky130_fd_sc_ls__inv l8_3 (.A(c8_3), .A(c8_1));
 div4_zeptobars tmp8(c8_1, rst_n, c8_output);
 
 //9 - direct instantiation - hs
 
 wire c9_1, c9_2, c9_3, c9_output;
 
-sky130_fd_sc_hs__inv l9_1 (A(c9_1 & ena), X(c9_2));
-sky130_fd_sc_hs__inv l9_2 (A(c9_2), X(c9_3));
-sky130_fd_sc_hs__inv l9_3 (A(c9_3), X(c9_1));
+sky130_fd_sc_hs__inv l9_1 (.A(c9_1 & ena), .A(c9_2));
+sky130_fd_sc_hs__inv l9_2 (.A(c9_2), .A(c9_3));
+sky130_fd_sc_hs__inv l9_3 (.A(c9_3), .A(c9_1));
 div4_zeptobars tmp9(c9_1, rst_n, c9_output);
 
 //10 - direct instantiation - hv
 
 wire ca_1, ca_2, ca_3, ca_output;
 
-sky130_fd_sc_hvl__inv la_1 (A(ca_1 & ena), X(ca_2));
-sky130_fd_sc_hvl__inv la_2 (A(ca_2), X(ca_3));
-sky130_fd_sc_hvl__inv la_3 (A(ca_3), X(ca_1));
+sky130_fd_sc_hvl__inv la_1 (.A(ca_1 & ena), .A(ca_2));
+sky130_fd_sc_hvl__inv la_2 (.A(ca_2), .A(ca_3));
+sky130_fd_sc_hvl__inv la_3 (.A(ca_3), .A(ca_1));
 div4_zeptobars tmpa(ca_1, rst_n, ca_output);
 
 /*Clock selector*/
