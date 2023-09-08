@@ -31,7 +31,7 @@ documentation:
 
 # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
   how_to_test:  |
-      Select oscillator (pins 4-6) and mesaure frequency on one of output pins. Observe true random numbers at pin 7.
+      Select oscillator (pins 4-7) and mesaure frequency on one of output pins. Observe true random numbers at pin 7.
 
 # A description of what the inputs do (e.g. red button, SPI CLK, SPI MOSI, etc).
   inputs:               
@@ -42,7 +42,7 @@ documentation:
     - clock source id_0
     - clock source id_1
     - clock source id_2
-    - unused  
+    - clock source id_3
 # A description of what the outputs do (e.g. status LED, SPI MISO, etc)
   outputs:
     - generated clock

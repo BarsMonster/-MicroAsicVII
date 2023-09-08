@@ -29,7 +29,7 @@ module tt_um_zeptobars(
 );
 
 wire shift_clk, shift_dta;
-wire [2:0] clk_source;
+wire [3:0] clk_source;
 
 // assign clk = ui_in[0]; 
 // assign rst_n = ui_in[1];
@@ -38,6 +38,7 @@ assign shift_dta = ui_in[3];
 assign clk_source[0] = ui_in[4];
 assign clk_source[1] = ui_in[5];
 assign clk_source[2] = ui_in[6];
+assign clk_source[3] = ui_in[7];
 
 
 /*Shift register chain, 16-bit*/
@@ -109,18 +110,48 @@ assign c7_4 = (c7_3 + shifter[6] + shifter[7]);
 assign c7_5 = (c7_4 + shifter[8] + shifter[9]);
 div4_zeptobars tmp7(c7_5, rst_n, c7_output);
 
+//8 - direct instantiation - ls
+
+wire c8_1, c8_2, c8_3, c8_output;
+
+sky130_fd_sc_ls__inv l8_1 (A(c8_1 & ena), X(c8_2));
+sky130_fd_sc_ls__inv l8_2 (A(c8_2), X(c8_3));
+sky130_fd_sc_ls__inv l8_3 (A(c8_3), X(c8_1));
+div4_zeptobars tmp8(c8_1, rst_n, c8_output);
+
+//9 - direct instantiation - hs
+
+wire c9_1, c9_2, c9_3, c9_output;
+
+sky130_fd_sc_hs__inv l9_1 (A(c9_1 & ena), X(c9_2));
+sky130_fd_sc_hs__inv l9_2 (A(c9_2), X(c9_3));
+sky130_fd_sc_hs__inv l9_3 (A(c9_3), X(c9_1));
+div4_zeptobars tmp9(c9_1, rst_n, c9_output);
+
+//10 - direct instantiation - hv
+
+wire ca_1, ca_2, ca_3, ca_output;
+
+sky130_fd_sc_hvl__inv la_1 (A(ca_1 & ena), X(ca_2));
+sky130_fd_sc_hvl__inv la_2 (A(ca_2), X(ca_3));
+sky130_fd_sc_hvl__inv la_3 (A(ca_3), X(ca_1));
+div4_zeptobars tmpa(ca_1, rst_n, ca_output);
+
 /*Clock selector*/
 reg selected_clock;
 always @ (*) begin
     case (clk_source)
-        3'b000 : selected_clock = c0_output;  
-        3'b001 : selected_clock = c1_output;  
-        3'b010 : selected_clock = c2_output;  
-        3'b011 : selected_clock = c3_output;  
-        3'b100 : selected_clock = c4_output;
-        3'b101 : selected_clock = c5_output;
-        3'b110 : selected_clock = c6_output;
-        3'b111 : selected_clock = c7_output;
+        3'b0000 : selected_clock = c0_output;  
+        3'b0001 : selected_clock = c1_output;  
+        3'b0010 : selected_clock = c2_output;  
+        3'b0011 : selected_clock = c3_output;  
+        3'b0100 : selected_clock = c4_output;
+        3'b0101 : selected_clock = c5_output;
+        3'b0110 : selected_clock = c6_output;
+        3'b0111 : selected_clock = c7_output;
+        3'b1000 : selected_clock = c8_output;
+        3'b1001 : selected_clock = c9_output;
+        3'b1010 : selected_clock = ca_output;
     endcase
 end
 
@@ -128,14 +159,14 @@ end
 reg random_out;
 always @ (posedge clk) begin
     case (clk_source)
-        3'b000 : random_out <= c0_output ^ c1_output;  
-        3'b001 : random_out <= c2_output ^ c3_output;  
-        3'b010 : random_out <= c4_output ^ c5_output;  
-        3'b011 : random_out <= c6_output ^ c7_output;  
-        3'b100 : random_out <= c0_output ^ c1_output ^ c2_output ^ c3_output;
-        3'b101 : random_out <= c4_output ^ c5_output ^ c6_output ^ c7_output;
-        3'b110 : random_out <= c0_output ^ c1_output ^ c2_output ^ c3_output ^ c4_output ^ c5_output ^ c6_output ^ c7_output;
-        3'b111 : random_out <= c1_output ^ c2_output;
+        3'b0000 : random_out <= c0_output ^ c1_output;  
+        3'b0001 : random_out <= c2_output ^ c3_output;  
+        3'b0010 : random_out <= c4_output ^ c5_output;  
+        3'b0011 : random_out <= c6_output ^ c7_output;  
+        3'b0100 : random_out <= c0_output ^ c1_output ^ c2_output ^ c3_output;
+        3'b0101 : random_out <= c4_output ^ c5_output ^ c6_output ^ c7_output;
+        3'b0110 : random_out <= c0_output ^ c1_output ^ c2_output ^ c3_output ^ c4_output ^ c5_output ^ c6_output ^ c7_output;
+        3'b0111 : random_out <= c1_output ^ c2_output;
     endcase
 end
   
