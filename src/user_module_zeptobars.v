@@ -125,7 +125,7 @@ always @ (*) begin
 end
 
 /*Random generator*/
-reg random_out;
+/*reg random_out;
 always @ (posedge clk) begin
     case (clk_source)
         3'b000 : random_out <= c0_output ^ c1_output;  
@@ -137,7 +137,7 @@ always @ (posedge clk) begin
         3'b110 : random_out <= c0_output ^ c1_output ^ c2_output ^ c3_output ^ c4_output ^ c5_output ^ c6_output ^ c7_output;
         3'b111 : random_out <= c1_output ^ c2_output;
     endcase
-end
+end*/
   
 reg [29 : 0] data;
 assign uo_out[0] = data[7];
