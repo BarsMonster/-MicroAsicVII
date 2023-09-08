@@ -125,8 +125,8 @@ always @ (*) begin
 end
 
 /*Random generator*/
-/*reg random_out;
-always @ (posedge clk) begin
+reg random_out;
+/*always @ (posedge clk) begin
     case (clk_source)
         3'b000 : random_out <= c0_output ^ c1_output;  
         3'b001 : random_out <= c2_output ^ c3_output;  
