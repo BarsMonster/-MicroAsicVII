@@ -51,7 +51,7 @@ documentation:
     - clock divided by 2^22
     - clock divided by 2^26
     - clock divided by 2^30
-    - clock divided by 2^32
+    - TRNG output
     - Bit 11 of shift register
 # A description of what the bidirectional I/O pins do (e.g. I2C SDA, I2C SCL, etc)
   bidirectional:

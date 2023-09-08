@@ -128,14 +128,14 @@ end
 reg random_out;
 always @ (posedge clk) begin
     case (clk_source)
-        3'b000 : random_out = c0_output ^ c1_output;  
-        3'b001 : random_out = c2_output ^ c3_output;  
-        3'b010 : random_out = c4_output ^ c5_output;  
-        3'b011 : random_out = c6_output ^ c7_output;  
-        3'b100 : random_out = c0_output ^ c1_output ^ c2_output ^ c3_output;
-        3'b101 : random_out = c4_output ^ c5_output ^ c6_output ^ c7_output;
-        3'b110 : random_out = c0_output ^ c1_output ^ c2_output ^ c3_output ^ c4_output ^ c5_output ^ c6_output ^ c7_output;
-        3'b111 : random_out = c1_output ^ c2_output;
+        3'b000 : random_out <= c0_output ^ c1_output;  
+        3'b001 : random_out <= c2_output ^ c3_output;  
+        3'b010 : random_out <= c4_output ^ c5_output;  
+        3'b011 : random_out <= c6_output ^ c7_output;  
+        3'b100 : random_out <= c0_output ^ c1_output ^ c2_output ^ c3_output;
+        3'b101 : random_out <= c4_output ^ c5_output ^ c6_output ^ c7_output;
+        3'b110 : random_out <= c0_output ^ c1_output ^ c2_output ^ c3_output ^ c4_output ^ c5_output ^ c6_output ^ c7_output;
+        3'b111 : random_out <= c1_output ^ c2_output;
     endcase
 end
   
