@@ -140,12 +140,12 @@ always @ (posedge clk) begin
 end
   
 reg [29 : 0] data;
-assign uo_out[0] = data[7];
-assign uo_out[1] = data[11];
-assign uo_out[2] = data[15];
-assign uo_out[3] = data[19];
-assign uo_out[4] = data[23];
-assign uo_out[5] = data[27];
+assign uo_out[0] = selected_clock;
+assign uo_out[1] = data[0];
+assign uo_out[2] = data[1];
+assign uo_out[3] = data[2];
+assign uo_out[4] = data[4];
+assign uo_out[5] = data[8];
 assign uo_out[6] = random_out;
 assign uo_out[7] = shifter[11];
 //div4_zeptobars tmp1(clk, rst_n, uo_out[6]);
