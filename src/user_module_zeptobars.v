@@ -132,10 +132,10 @@ div4_zeptobars tmp9(c9_1, rst_n, c9_output);
 
 wire ca_1, ca_2, ca_3, ca_output;
 
-sky130_fd_sc_ms__inv la_1 (.A(ca_1 & ena), .A(ca_2));
+/*sky130_fd_sc_ms__inv la_1 (.A(ca_1 & ena), .A(ca_2));
 sky130_fd_sc_ms__inv la_2 (.A(ca_2), .A(ca_3));
 sky130_fd_sc_ms__inv la_3 (.A(ca_3), .A(ca_1));
-div4_zeptobars tmpa(ca_1, rst_n, ca_output);
+div4_zeptobars tmpa(ca_1, rst_n, ca_output);*/
 
 /*Clock selector*/
 reg selected_clock;
