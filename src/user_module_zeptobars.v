@@ -110,7 +110,7 @@ assign c7_4 = (c7_3 + shifter[6] + shifter[7]);
 assign c7_5 = (c7_4 + shifter[8] + shifter[9]);
 div4_zeptobars tmp7(c7_5, rst_n, c7_output);
 
-//8 - direct instantiation - ls
+//8 - direct instantiation - hd
 
 wire c8_1, c8_2, c8_3, c8_output;
 
@@ -119,7 +119,7 @@ sky130_fd_sc_hd__inv_1 l8_2 (.A(c8_2), .A(c8_3));
 sky130_fd_sc_hd__inv_1 l8_3 (.A(c8_3), .A(c8_1));
 div4_zeptobars tmp8(c8_1, rst_n, c8_output);
 
-//9 - direct instantiation - hs
+//9 - direct instantiation - hdll
 
 wire c9_1, c9_2, c9_3, c9_output;
 
@@ -128,14 +128,28 @@ sky130_fd_sc_hdll__inv_1 l9_2 (.A(c9_2), .A(c9_3));
 sky130_fd_sc_hdll__inv_1 l9_3 (.A(c9_3), .A(c9_1));
 div4_zeptobars tmp9(c9_1, rst_n, c9_output);
 
-//10 - direct instantiation - hv
+//a - direct instantiation - hd
 
-wire ca_1, ca_2, ca_3, ca_output;
+wire ca_1, ca_2, ca_3, ca_4, ca_5, ca_output;
 
-/*sky130_fd_sc_ms__inv la_1 (.A(ca_1 & ena), .A(ca_2));
-sky130_fd_sc_ms__inv la_2 (.A(ca_2), .A(ca_3));
-sky130_fd_sc_ms__inv la_3 (.A(ca_3), .A(ca_1));
-div4_zeptobars tmpa(ca_1, rst_n, ca_output);*/
+sky130_fd_sc_hd__inv_1 la_1 (.A(ca_1 & ena), .A(ca_2));
+sky130_fd_sc_hd__inv_1 la_2 (.A(ca_2), .A(ca_3));
+sky130_fd_sc_hd__inv_1 la_3 (.A(ca_3), .A(ca_4));
+sky130_fd_sc_hd__inv_1 la_4 (.A(ca_4), .A(ca_5));
+sky130_fd_sc_hd__inv_1 la_5 (.A(ca_5), .A(ca_1));
+div4_zeptobars tmpa(ca_1, rst_n, ca_output);
+
+//b - direct instantiation - hdll
+
+wire cb_1, cb_2, cb_3, cb_4, cb_5, cb_output;
+
+sky130_fd_sc_hdll__inv_1 lb_1 (.A(cb_1 & ena), .A(cb_2));
+sky130_fd_sc_hdll__inv_1 lb_2 (.A(cb_2), .A(cb_3));
+sky130_fd_sc_hdll__inv_1 lb_3 (.A(cb_3), .A(cb_4));
+sky130_fd_sc_hdll__inv_1 lb_4 (.A(cb_4), .A(cb_5));
+sky130_fd_sc_hdll__inv_1 lb_5 (.A(cb_5), .A(cb_1));
+div4_zeptobars tmpa(cb_1, rst_n, cb_output);
+
 
 /*Clock selector*/
 reg selected_clock;
@@ -152,6 +166,7 @@ always @ (*) begin
         4'b1000 : selected_clock = c8_output;
         4'b1001 : selected_clock = c9_output;
         4'b1010 : selected_clock = ca_output;
+        4'b1011 : selected_clock = cb_output;
     endcase
 end
 
