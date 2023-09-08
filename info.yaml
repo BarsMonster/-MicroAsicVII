@@ -52,7 +52,7 @@ documentation:
     - clock divided by 2^26
     - clock divided by 2^30
     - clock divided by 2^32
-    - Bit 11 of shift register \n(to ensure it's not optimized away)
+    - Bit 11 of shift register
 # A description of what the bidirectional I/O pins do (e.g. I2C SDA, I2C SCL, etc)
   bidirectional:
     - none

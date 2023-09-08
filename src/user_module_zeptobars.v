@@ -8,7 +8,7 @@ module div4_zeptobars ( clk ,rst, out_clk );
     reg [1:0] data;
     assign out_clk = data[1];
 
-    always @(posedge clk)
+    always @(posedge clk or posedge rst)
     begin
     if (rst)
          data <= 2'b0;
