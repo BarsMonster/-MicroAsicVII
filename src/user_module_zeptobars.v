@@ -148,7 +148,7 @@ sky130_fd_sc_hd__inv_1 lb_2 (.A(cb_2), .A(cb_3));
 sky130_fd_sc_hd__inv_1 lb_3 (.A(cb_3), .A(cb_4));
 sky130_fd_sc_hd__inv_1 lb_4 (.A(cb_4), .A(cb_5));
 sky130_fd_sc_hd__inv_1 lb_5 (.A(cb_5), .A(cb_1));
-div4_zeptobars tmpa(cb_1, rst_n, cb_output);
+div4_zeptobars tmpb(cb_1, rst_n, cb_output);
 
 
 /*Clock selector*/
