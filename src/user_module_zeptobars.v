@@ -132,26 +132,26 @@ div4_zeptobars tmp9(c9_1, rst_n, c9_output);
 
 wire ca_1, ca_2, ca_3, ca_output;
 
-sky130_fd_sc_hvl__inv la_1 (.A(ca_1 & ena), .A(ca_2));
-sky130_fd_sc_hvl__inv la_2 (.A(ca_2), .A(ca_3));
-sky130_fd_sc_hvl__inv la_3 (.A(ca_3), .A(ca_1));
+sky130_fd_sc_ms__inv la_1 (.A(ca_1 & ena), .A(ca_2));
+sky130_fd_sc_ms__inv la_2 (.A(ca_2), .A(ca_3));
+sky130_fd_sc_ms__inv la_3 (.A(ca_3), .A(ca_1));
 div4_zeptobars tmpa(ca_1, rst_n, ca_output);
 
 /*Clock selector*/
 reg selected_clock;
 always @ (*) begin
     case (clk_source)
-        3'b0000 : selected_clock = c0_output;  
-        3'b0001 : selected_clock = c1_output;  
-        3'b0010 : selected_clock = c2_output;  
-        3'b0011 : selected_clock = c3_output;  
-        3'b0100 : selected_clock = c4_output;
-        3'b0101 : selected_clock = c5_output;
-        3'b0110 : selected_clock = c6_output;
-        3'b0111 : selected_clock = c7_output;
-        3'b1000 : selected_clock = c8_output;
-        3'b1001 : selected_clock = c9_output;
-        3'b1010 : selected_clock = ca_output;
+        4'b0000 : selected_clock = c0_output;  
+        4'b0001 : selected_clock = c1_output;  
+        4'b0010 : selected_clock = c2_output;  
+        4'b0011 : selected_clock = c3_output;  
+        4'b0100 : selected_clock = c4_output;
+        4'b0101 : selected_clock = c5_output;
+        4'b0110 : selected_clock = c6_output;
+        4'b0111 : selected_clock = c7_output;
+        4'b1000 : selected_clock = c8_output;
+        4'b1001 : selected_clock = c9_output;
+        4'b1010 : selected_clock = ca_output;
     endcase
 end
 
@@ -159,14 +159,14 @@ end
 reg random_out;
 always @ (posedge clk) begin
     case (clk_source)
-        3'b0000 : random_out <= c0_output ^ c1_output;  
-        3'b0001 : random_out <= c2_output ^ c3_output;  
-        3'b0010 : random_out <= c4_output ^ c5_output;  
-        3'b0011 : random_out <= c6_output ^ c7_output;  
-        3'b0100 : random_out <= c0_output ^ c1_output ^ c2_output ^ c3_output;
-        3'b0101 : random_out <= c4_output ^ c5_output ^ c6_output ^ c7_output;
-        3'b0110 : random_out <= c0_output ^ c1_output ^ c2_output ^ c3_output ^ c4_output ^ c5_output ^ c6_output ^ c7_output;
-        3'b0111 : random_out <= c1_output ^ c2_output;
+        4'b0000 : random_out <= c0_output ^ c1_output;  
+        4'b0001 : random_out <= c2_output ^ c3_output;  
+        4'b0010 : random_out <= c4_output ^ c5_output;  
+        4'b0011 : random_out <= c6_output ^ c7_output;  
+        4'b0100 : random_out <= c0_output ^ c1_output ^ c2_output ^ c3_output;
+        4'b0101 : random_out <= c4_output ^ c5_output ^ c6_output ^ c7_output;
+        4'b0110 : random_out <= c0_output ^ c1_output ^ c2_output ^ c3_output ^ c4_output ^ c5_output ^ c6_output ^ c7_output;
+        4'b0111 : random_out <= c1_output ^ c2_output;
     endcase
 end
   
