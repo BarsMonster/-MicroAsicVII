@@ -28,11 +28,11 @@ module tt_um_zeptobars(
     input  wire       rst_n     // reset_n - low to reset
 );
 
-wire rst_n, shift_clk, shift_dta;
+wire shift_clk, shift_dta;
 wire [2:0] clk_source;
 
 // assign clk = ui_in[0]; 
-assign rst_n = ui_in[1];
+// assign rst_n = ui_in[1];
 assign shift_clk = ui_in[2];
 assign shift_dta = ui_in[3];
 assign clk_source[0] = ui_in[4];
