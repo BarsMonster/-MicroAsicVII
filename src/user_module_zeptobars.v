@@ -17,7 +17,7 @@ module div4_zeptobars ( clk ,rst, out_clk );
     end
 endmodule
 
-module user_module_zeptobars(
+module tt_um_zeptobars(
     input  wire [7:0] ui_in,    // Dedicated inputs - connected to the input switches
     output wire [7:0] uo_out,   // Dedicated outputs - connected to the 7 segment display
     input  wire [7:0] uui_in,   // IOs: Bidirectional Input path
